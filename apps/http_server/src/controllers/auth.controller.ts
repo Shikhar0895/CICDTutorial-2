@@ -6,7 +6,6 @@ import bcrypt from "bcrypt";
 import { generateTokens } from "../utils/index.js";
 import { cookieOptions } from "../constants.js";
 import { ApiError } from "../utils/ApiError.js";
-import { RequestHandler } from "express";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const RegisterUser = async (req: Request, res: Response) => {
