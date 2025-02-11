@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { verifyJWT } from "../middlewares/auth.middleware";
-import { upload } from "../middlewares/multer.middleware";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
+import { upload } from "../middlewares/multer.middleware.js";
 import {
   updatePhotoUrls,
   updateProfileDetails,
-} from "../controllers/auth.controller";
+} from "../controllers/auth.controller.js";
 
 const router: Router = Router();
 

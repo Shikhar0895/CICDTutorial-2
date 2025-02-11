@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { verifyJWT } from "../middlewares/auth.middleware";
-import { editProfile } from "../controllers/profile.controller";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
+import { editProfile } from "../controllers/profile.controller.js";
 
 const router: Router = Router();
 

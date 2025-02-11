@@ -1,13 +1,13 @@
 import { CustomRequest, FormSchema } from "@repo/common/types";
 import { prismaClient } from "@repo/db/client";
 import { Request, Response } from "express";
-import { ApiResponse } from "../utils/ApiResponse";
+import { ApiResponse } from "../utils/ApiResponse.js";
 import bcrypt from "bcrypt";
-import { generateTokens } from "../utils/index";
-import { cookieOptions } from "../constants";
-import { ApiError } from "../utils/ApiError";
+import { generateTokens } from "../utils/index.js";
+import { cookieOptions } from "../constants.js";
+import { ApiError } from "../utils/ApiError.js";
 import { RequestHandler } from "express";
-import { uploadOnCloudinary } from "../utils/cloudinary";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const RegisterUser = async (req: Request, res: Response) => {
   const { username, password } = req.body;
@@ -20,6 +20,17 @@ const RegisterUser = async (req: Request, res: Response) => {
   }
   try {
     const hashedPassword = await bcrypt.hash(parsedData.data.password, 10);
+
+    const isUserAlreadyExist = await prismaClient.users.findFirst({
+      where: {
+        username,
+      },
+    });
+    if (isUserAlreadyExist) {
+      res.status(409).json(new ApiResponse(409, {}, "User already exist"));
+      return;
+    }
+
     const user = await prismaClient.users.create({
       data: {
         username,

@@ -1,7 +1,7 @@
 "use client";
 import { FormSchema } from "@repo/common/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
   FormControl,
@@ -19,11 +19,11 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 
 const AuthForm = ({ type }: { type: "signup" | "signin" }) => {
+  const [error, setError] = useState(null);
+
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  console.log(apiUrl);
   const router = useRouter();
-  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-    console.log("submit clicked");
+  const onSubmitSignup = async (data: z.infer<typeof FormSchema>) => {
     await axios
       .post(
         `${apiUrl}/api/v1/${type}`,
@@ -33,11 +33,12 @@ const AuthForm = ({ type }: { type: "signup" | "signin" }) => {
         { withCredentials: true }
       )
       .then((response: any) => {
-        if (response.data.statusCode === 200 && response.data.success === true)
-          router.push("/dashboard");
+        router.push("/dashboard");
       })
       .catch((e) => {
-        console.error(e);
+        // console.error(e);
+        const errorMsg = e.response.data.message || "An unknown error occured";
+        setError(errorMsg);
       });
   };
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -50,7 +51,7 @@ const AuthForm = ({ type }: { type: "signup" | "signin" }) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmitSignup)} className="space-y-8">
         <FormField
           control={form.control}
           name="username"
@@ -60,9 +61,8 @@ const AuthForm = ({ type }: { type: "signup" | "signin" }) => {
               <FormControl>
                 <Input placeholder="" {...field} />
               </FormControl>
-              {form.formState.errors.username && (
-                <FormMessage color="#23ffe1" />
-              )}
+              {form.formState.errors.username && <FormMessage />}
+              {error && <p className="text-red-700">{error}</p>}
             </FormItem>
           )}
         />
@@ -75,9 +75,7 @@ const AuthForm = ({ type }: { type: "signup" | "signin" }) => {
               <FormControl>
                 <Input placeholder="" {...field} type="password" />
               </FormControl>
-              {form.formState.errors.password && (
-                <FormMessage color="#23ffe1" />
-              )}
+              {form.formState.errors.password && <FormMessage />}
             </FormItem>
           )}
         />

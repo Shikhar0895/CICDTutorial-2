@@ -1,5 +1,5 @@
 import { app } from "./app.js";
-import { connectDB } from "./utils/connectDb";
+import { connectDB } from "./utils/connectDb.js";
 
 connectDB()
   .then(() => {

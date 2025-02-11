@@ -15,7 +15,6 @@ interface decodedPayload {
 
 async function verifyUser(token: string) {
   try {
-    console.log(config);
     const decodedPayload = jwt.verify(token, config.ACCESS_TOKEN_SECRET);
     const isUserValid = await prismaClient.users.findFirst({
       where: {

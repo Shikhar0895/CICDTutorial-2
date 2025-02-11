@@ -2,9 +2,9 @@ import express, { Express } from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import "dotenv/config";
-import { router as authRouter } from "./routes/auth.routes";
-import { router as roomRouter } from "./routes/room.route";
-import { router as userRouter } from "./routes/user.routes";
+import { router as authRouter } from "./routes/auth.routes.js";
+import { router as roomRouter } from "./routes/room.route.js";
+import { router as userRouter } from "./routes/user.routes.js";
 const app: Express = express();
 
 app.use(

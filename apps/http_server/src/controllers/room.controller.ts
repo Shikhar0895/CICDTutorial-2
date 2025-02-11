@@ -1,7 +1,7 @@
 import { CreateRoomSchema, CustomRequest } from "@repo/common/types";
 import { prismaClient } from "@repo/db/client";
 import { Request, Response } from "express";
-import { ApiResponse } from "../utils/ApiResponse";
+import { ApiResponse } from "../utils/ApiResponse.js";
 import { date } from "zod";
 
 // model Rooms {
@@ -49,7 +49,9 @@ const CreateRoom = async (req: CustomRequest, res: Response) => {
       },
     });
     if (!(createdRoom && addMember)) {
-      res.status(400).json(new ApiResponse(400, {}, "Room Creation failed"));
+      res
+        .status(400)
+        .json(new ApiResponse(400, {}, "Room Creation failed from line 54"));
       return;
     }
     res
@@ -57,7 +59,9 @@ const CreateRoom = async (req: CustomRequest, res: Response) => {
       .json(new ApiResponse(200, { roomId: createdRoom.id }, "Room Created"));
     return;
   } catch (error) {
-    res.status(400).json(new ApiResponse(200, null, "Room Creation Failed"));
+    res
+      .status(400)
+      .json(new ApiResponse(200, null, "Room Creation Failed from line 64"));
     return;
   }
 };

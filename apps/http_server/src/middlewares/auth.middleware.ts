@@ -1,7 +1,7 @@
 import { prismaClient } from "@repo/db/client";
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { ApiResponse } from "../utils/ApiResponse";
+import { ApiResponse } from "../utils/ApiResponse.js";
 
 interface CustomRequest extends Request {
   user?: {
@@ -29,7 +29,7 @@ const verifyJWT = async (
 
   let response;
   let secret;
-  console.log("From middleware", receivedToken);
+
   if (
     receivedToken === req.cookies?.accessToken ||
     req.header("Authorization")?.replace("Bearer ", "")
