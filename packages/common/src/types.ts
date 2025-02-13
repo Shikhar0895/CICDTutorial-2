@@ -10,11 +10,11 @@ const CreateRoomSchema = z.object({
   isAdmin: z.boolean(),
 });
 
-export interface CustomRequest extends express.Request {
+interface CustomRequest extends express.Request {
   user?: {
     id: string;
     username: string;
   };
 }
 
-export { FormSchema, CreateRoomSchema };
+export { FormSchema, CreateRoomSchema, type CustomRequest };

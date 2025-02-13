@@ -1,7 +1,7 @@
 import { prismaClient } from "@repo/db/client";
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { ApiResponse } from "../utils/ApiResponse.js";
+import { ApiResponse } from "../utils/ApiResponse";
 
 interface CustomRequest extends Request {
   user?: {

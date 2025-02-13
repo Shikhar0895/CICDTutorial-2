@@ -1,7 +1,7 @@
 import { CreateRoomSchema, CustomRequest } from "@repo/common/types";
 import { prismaClient } from "@repo/db/client";
 import { Request, Response } from "express";
-import { ApiResponse } from "../utils/ApiResponse.js";
+import { ApiResponse } from "../utils/ApiResponse";
 import { date } from "zod";
 
 // model Rooms {

@@ -5,9 +5,9 @@ import {
   SignInUser,
   refreshToken,
   updatePhotoUrls,
-} from "../controllers/auth.controller.js";
-import { verifyJWT } from "../middlewares/auth.middleware.js";
-import { upload } from "../middlewares/multer.middleware.js";
+} from "../controllers/auth.controller";
+import { verifyJWT } from "../middlewares/auth.middleware";
+import { upload } from "../middlewares/multer.middleware";
 
 const router: Router = Router();
 

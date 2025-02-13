@@ -1,12 +1,12 @@
 import { CustomRequest, FormSchema } from "@repo/common/types";
 import { prismaClient } from "@repo/db/client";
 import { Request, Response } from "express";
-import { ApiResponse } from "../utils/ApiResponse.js";
+import { ApiResponse } from "../utils/ApiResponse";
 import bcrypt from "bcrypt";
-import { generateTokens } from "../utils/index.js";
-import { cookieOptions } from "../constants.js";
-import { ApiError } from "../utils/ApiError.js";
-import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { generateTokens } from "../utils/index";
+import { cookieOptions } from "../constants";
+import { ApiError } from "../utils/ApiError";
+import { uploadOnCloudinary } from "../utils/cloudinary";
 
 const RegisterUser = async (req: Request, res: Response) => {
   const { username, password } = req.body;
