@@ -1,20 +1,16 @@
-name: Deploy to staging
-on:
-  push:
-    branches: -"main"
+# name: Deploy to staging
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  redeploy_frontend:
-    name: Deploying the frontend to staging
+# jobs:
+#   deploy_:
+#     name: Deploying the frontend to staging
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: SSH into EC2 machine
-      - run: |
-          echo {{SSH_PRIVATE_KEY_DEV_SERVER}} &> ~/ssh_key
-          ssh -i ~/ssh_key ubuntu@ec2-18-207-202-69.compute-1.amazonaws.com
-          cd projectFiles/CICDTutorial-2/ && git pull
-          pnpm install
-          pnpm run build
-          pm2 restart fe-server-dev
-          pm2 restart http-server
-          pm2 restart ws-server
+#     steps:
+#       - name: Checkout the code
+#         uses: actions/checkout@v2
+
+#       - name: executing remote ssh commands using sshkey

@@ -1,6 +1,4 @@
 "use client";
-import Navbar from "./Navbar";
-
 export default function MyApp() {
   return (
     <div className="flex flex-col gap-9">

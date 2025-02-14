@@ -2,7 +2,7 @@
 import React from "react";
 import { useParams } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   //create a canvas window
   //create a chat window
   //create participants
@@ -21,4 +21,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

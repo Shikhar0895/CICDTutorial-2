@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React from "react";
 import { AccountCircle } from "../assets";
 import { useRoom } from "@/hooks/useRoom";
 import useApi from "@/hooks/useApi";
@@ -25,7 +25,7 @@ const Dashboard = () => {
     loading: createRoomApiLoading,
     error: createRoomError,
   } = useApi(createRoomApi);
-
+  console.log({ createRoomData, createRoomError, createRoomApiLoading });
   const router = useRouter();
 
   if (data !== null)

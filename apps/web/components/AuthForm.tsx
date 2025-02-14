@@ -1,11 +1,10 @@
 "use client";
 import { FormSchema } from "@repo/common/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { FormEvent, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
