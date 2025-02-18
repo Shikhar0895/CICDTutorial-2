@@ -30,6 +30,17 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
+      - name: Setup ENV variables
+        run: |
+          cd packages/db
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+
+      - name: Generate Prisma client
+        run: |
+          cd packages/db
+          npx prisma migrate dev
+          npx prisma generate
+
       - name: Build the project
         run: pnpm run build
 
