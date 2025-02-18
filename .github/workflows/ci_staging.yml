@@ -47,6 +47,7 @@ jobs:
         ##Build docker image
       - name: Build Docker Image
         run: |
+          pwd
           docker build \
           -t edclone:latest \
           -t edclone:${{ github.ref_name }}-${{ github.sha }} \
