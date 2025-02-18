@@ -51,6 +51,7 @@ jobs:
           -t edclone:latest \
           -t edclone:${{ github.ref_name }}-${{ github.sha }} \
           -t edclone:$(date +%Y%m%d%-%H%M%S) \
+          .
       - name: Push Docker Image
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
