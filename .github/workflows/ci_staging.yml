@@ -48,7 +48,7 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build \
-          -t edclone:latest ${{github.sha}} \
+          -t edclone:latest \
           -t edclone:${{ github.ref_name }}-${{ github.sha }} \
           -t edclone:$(date +%Y%m%d%-%H%M%S) \
       - name: Push Docker Image
