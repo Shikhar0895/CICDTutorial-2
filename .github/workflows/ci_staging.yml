@@ -1,9 +1,11 @@
-name: CI Pipeline for ExcalidrawClone
+name: CI pipeline on push to main
 
 on:
-  push:
+  pull_request:
     branches:
       - main
+  push:
+    branches: -main
 
 jobs:
   ci_pipeline:
@@ -29,3 +31,16 @@ jobs:
 
       - name: Build the project
         run: pnpm run build
+
+        ##Build docker image
+      - name: Build Docker Image
+        run: |
+          docker build \
+          -t edClone:latest ${{github.sha}} \
+          -t edClone:${{ github.ref_name }}-${{ github.sha }} \
+          -t edClone:$(date +%Y%m%d%-%H%M%S) \
+      - name: Push Docker Image
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker tag edClone:latest edClone:${{ github.ref_name }}-${{ github.sha }} edClone:$(date +%Y%m%d%-%H%M%S)
+          docker push Shikhar0895/edClone:latest
