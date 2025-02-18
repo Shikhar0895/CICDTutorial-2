@@ -48,11 +48,11 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build \
-          -t edClone:latest ${{github.sha}} \
-          -t edClone:${{ github.ref_name }}-${{ github.sha }} \
-          -t edClone:$(date +%Y%m%d%-%H%M%S) \
+          -t edclone:latest ${{github.sha}} \
+          -t edclone:${{ github.ref_name }}-${{ github.sha }} \
+          -t edclone:$(date +%Y%m%d%-%H%M%S) \
       - name: Push Docker Image
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker tag edClone:latest edClone:${{ github.ref_name }}-${{ github.sha }} edClone:$(date +%Y%m%d%-%H%M%S)
-          docker push Shikhar0895/edClone:latest
+          docker tag edclone:latest edclone:${{ github.ref_name }}-${{ github.sha }} edclone:$(date +%Y%m%d%-%H%M%S)
+          docker push Shikhar0895/edclone:latest
