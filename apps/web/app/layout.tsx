@@ -26,9 +26,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} p-[64px] relative`}
       >
-        <div className="absolute min-h-screen top-[50%] left-0 text-9xl font-bold -z-10 backdrop-blur-3xl bg-amber-500 rounded-4xl blur-3xl">
+        {/* <div className="absolute min-h-screen top-[50%] left-0 text-9xl font-bold -z-10 backdrop-blur-3xl bg-amber-500 rounded-4xl blur-3xl">
           Articulate
-        </div>
+        </div> */}
         <div className="absolute z-50">{children}</div>
       </body>
     </html>
